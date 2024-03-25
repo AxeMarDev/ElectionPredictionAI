@@ -6,7 +6,7 @@ import USAMap from "react-usa-map";
 
 export default function Home() {
 
-    const mapHandler = (event:any ) => {
+    const mapHandler = ( event:any ) => {
         alert(event.target.dataset.name);
         return 0;
     };
