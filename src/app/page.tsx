@@ -14,6 +14,7 @@ export default function Home() {
     return (
       <div className={"bg-black w-screen h-screen flex justify-center grid content-center"}>
           <div className="App">
+              <p> this is the website </p>
               <USAMap onClick={mapHandler} />
           </div>
       </div>
