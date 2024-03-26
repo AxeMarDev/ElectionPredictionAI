@@ -57,8 +57,12 @@ if __name__ == "__main__":
         GBR_model = GradientBoostingRegressor()     #builds an additice model in a forward stage-wise, allows for optimization of arbitrary differentiable loss functions
         MLP_model = MLPRegressor()                  #optimizes the squared error using LBFGS or stochastic gradient descent.
 
+        pipeline = make_pipeline(LinearRegression())
+
+        pipeline.fit(X_train, y_train)
+
         linear_model.fit(X_train, y_train)
-        lin_pred = Linear_model.predict(X_test)
+        lin_pred = linear_model.predict(X_test)
         
         RF_model.fit(X_train, y_train)
         RF_model.score
