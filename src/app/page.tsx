@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from 'react';
 // @ts-ignore
 import USAMap from "react-usa-map";
+import stateColors from "@/app/utility/stateColors";
 
 export default function Home() {
 
@@ -11,10 +12,12 @@ export default function Home() {
         return 0;
     };
 
+
+
     return (
-      <div className={"bg-black w-screen h-screen flex justify-center grid content-center"}>
+      <div className={"bg-gray-800 w-screen h-screen flex justify-center grid content-center"}>
           <div className="App">
-              <USAMap onClick={mapHandler} />
+              <USAMap customize={stateColors()} onClick={mapHandler} />
           </div>
       </div>
   );
