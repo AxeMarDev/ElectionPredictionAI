@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <div>
             <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
-                <div className={"flex flex-col h-full justify-center grid content-center"}>
+                <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
                     <USAMap customize={stateColors()} onClick={mapHandler} />
                 </div>
                 <div className={"w-full pl-10  pr-10 flex justify-between "}>
