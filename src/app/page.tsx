@@ -13,8 +13,6 @@ export default function Home() {
         return 0;
     };
 
-
-
     return (
         <div>
             <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
@@ -49,7 +47,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={"h-[23rem]"}>
-                <p>pending</p>
+                <button> click this </button>
             </div>
         </div>
 
