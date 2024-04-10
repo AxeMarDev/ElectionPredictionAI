@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import React from 'react';
+import React, {useState} from 'react';
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
@@ -14,7 +14,12 @@ export default function Home() {
         return 0;
     };
 
+    const [color, setState] = useState("bg-white" );
 
+    const buttonColorHandler = () =>{
+        setState("bg-red-200")
+        console.log("reponse of chat should be here")
+    }
 
     return (
         <div>
@@ -51,6 +56,7 @@ export default function Home() {
             </div>
             <div className={"h-[23rem]"}>
                 <p>pending</p>
+                <button className={`${color}`} onClick={()=>buttonColorHandler()}>click  me</button>
             </div>
         </div>
 
