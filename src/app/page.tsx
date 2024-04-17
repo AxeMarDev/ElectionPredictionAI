@@ -4,6 +4,7 @@ import React from 'react';
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
+import Api from "./utility/API";
 
 
 export default function Home() {
