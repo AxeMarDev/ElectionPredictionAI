@@ -1,10 +1,45 @@
 'use client'
 import Image from "next/image";
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import Api from "./utility/API";
+
+
+const ScrapeComponent = () => {
+    const [pageData, setPageData] = useState({ title: '' });
+    const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/scrape');
+                const data = await response.json();
+                setPageData(data);
+            } catch (error:any) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <div>
+            <h1>Scraped Data</h1>
+            <p>Page Title: {pageData.title}</p>
+        </div>
+    );
+};
+
+
+
 
 export default function Home() {
 
@@ -44,6 +79,9 @@ export default function Home() {
                     <div className={"bg-red-500 w-[55%]"}>
                         <p>bar</p>
                     </div>
+                </div>
+                <div>
+                    <ScrapeComponent/>
                 </div>
             </div>
 
