@@ -9,6 +9,40 @@ import stateColors from "@/app/utility/stateColors";
 import Api from "./utility/API";
 
 
+const ScrapeComponent = () => {
+    const [pageData, setPageData] = useState({ title: '' });
+    const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/scrape');
+                const data = await response.json();
+                setPageData(data);
+            } catch (error:any) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <div>
+            <h1>Scraped Data</h1>
+            <p>Page Title: {pageData.title}</p>
+        </div>
+    );
+};
+
+
+
+
 export default function Home() {
 
     const democratPercent = 45; // Example percentage value for Democrat
@@ -63,6 +97,9 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+                <div>
+                    <ScrapeComponent/>
+                </div>
             </div>
             <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-hidden duration-500 ease-in-out`}>
                 <div className="bg-gray-900/80 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
@@ -99,8 +136,6 @@ export default function Home() {
                 )}
             </div>
         </div>
-
-
   );
 }
 
