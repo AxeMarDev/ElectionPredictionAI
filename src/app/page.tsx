@@ -48,7 +48,6 @@ export default function Home() {
 
     const democratPercent = 45; // Example percentage value for Democrat
     const republicanPercent = 55; // Example percentage value for Republican
-
     const mapHandler = ( event:any ) => {
         alert(event.target.dataset.name);
         return 0;
