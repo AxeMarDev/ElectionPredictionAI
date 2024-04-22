@@ -4,6 +4,7 @@ export default function stateColors() {
         // solid red states
         "AL": {
             fill: "red",
+
         },
         "MS": {
             fill: "red"
@@ -63,47 +64,33 @@ export default function stateColors() {
         "AK": {
             fill: "red"
         },
-
-
-
-        // likly red states
         "TX": {
-            fill: "#ff3c50"
+            fill: "red"
         },
         "FL": {
-            fill: "#ff3c50"
+            fill: "red"
         },
         "IA": {
-            fill: "#ff3c50"
+            fill: "red"
         },
         "OH": {
-            fill: "#ff3c50"
+            fill: "red"
         },
-
-        //tilt red
         "NC": {
-            fill: "#ff7683"
+            fill: "red"
         },
-
-        //toss up red
         "WI": {
-            fill: "#ffc0c7"
+            fill: "red"
         },
         "MI": {
-            fill: "#ffc0c7"
+            fill: "red"
         },
         "GA": {
-            fill: "#ffc0c7"
+            fill: "red"
         },
         "AZ": {
-            fill: "#ffc0c7"
+            fill: "red"
         },
-
-
-
-
-
-        // solid blue states
         "CA": {
             fill: "blue",
         },
@@ -155,25 +142,20 @@ export default function stateColors() {
         "HI": {
             fill: "blue"
         },
-
-
-        //likey blue
         "MN": {
-            fill: "#466aff"
+            fill: "blue"
         },
         "ME": {
-            fill: "#466aff"
+            fill: "blue"
         },
         "NH": {
-            fill: "#466aff",
+            fill: "blue",
         },
-
-        //toss up blue
         "PA": {
-            fill: "#c0c5ff"
+            fill: "blue"
         },
         "NV": {
-            fill: "#c0c5ff"
+            fill: "blue"
         },
 
 

@@ -6,15 +6,12 @@ import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import Api from "./utility/API";
 
-
 export default function Home() {
 
     const mapHandler = ( event:any ) => {
         alert(event.target.dataset.name);
         return 0;
     };
-
-
 
     return (
         <div>
@@ -49,12 +46,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={"h-[23rem]"}>
-                <p>pending</p>
-            </div>
+
         </div>
-
-
   );
 }
 
