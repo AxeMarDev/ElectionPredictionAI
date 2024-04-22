@@ -6,7 +6,6 @@ import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import Api from "./utility/API";
 
-
 export default function Home() {
 
     const mapHandler = ( event:any ) => {
@@ -47,12 +46,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={"h-[23rem]"}>
-                <button> click this </button>
-            </div>
+
         </div>
-
-
   );
 }
 
