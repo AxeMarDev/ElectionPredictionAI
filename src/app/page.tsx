@@ -1,6 +1,6 @@
 'use client'
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
-import React, {useState} from 'react';
 import NewsPage from "./newsPage";
 import VideoEmbed from "./videoEmbed";
 // @ts-ignore
@@ -32,12 +32,13 @@ const ScrapeComponent = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    return (
-        <div>
-            <h1>Scraped Data</h1>
-            <p>Page Title: {pageData.title}</p>
-        </div>
-    );
+    // commented this out because it moves everything on the page and cuts off the map
+    // return (
+    //     <div>
+    //         <h1>Scraped Data</h1>
+    //         <p>Page Title: {pageData.title}</p>
+    //     </div>
+    // );
 };
 
 
