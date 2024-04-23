@@ -10,7 +10,7 @@ import Api from "./utility/API";
 
 
 const ScrapeComponent = () => {
-    const [pageData, setPageData] = useState({ title: '' });
+    const [pageData, setPageData] = useState({ response: '' });
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -19,7 +19,9 @@ const ScrapeComponent = () => {
             try {
                 const response = await fetch('/api/scrape');
                 const data = await response.json();
-                setPageData(data);
+                setPageData(data.response);
+                console.log(data.response)
+                setLoading(false);
             } catch (error:any) {
                 setError(error.message);
             } finally {
