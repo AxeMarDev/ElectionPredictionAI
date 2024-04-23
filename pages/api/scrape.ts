@@ -1,26 +1,43 @@
-// pages/api/scrape.js
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req:any, res:any) {
-    // URL to scrape
-    const url = 'https://google.com';
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
-        // Fetch the content from the URL
-        const response = await fetch(url);
+        const response = await fetch('https://projects.fivethirtyeight.com/polls/arizona/');
         const body = await response.text();
-
-        // Load the HTML into cheerio
         const $ = cheerio.load(body);
+        const polls:any = [];
 
-        // Extract data using cheerio
-        const pageTitle = $('title').text(); // Example: Get the title of the page
+        // Select each row in the table
+        $('table.polls-table tr.visible-row').each((index, element) => {
+            const $row = $(element);
+            const poll = {
+                date: $row.find('.dates .date-wrapper').text().trim(),
+                sample: $row.find('.sample').text().trim(),
+                sampleType: $row.find('.sample-type').text().trim(),
+                pollster: $row.find('.pollster-name').text().trim(),
+                sponsor: $row.find('.sponsor a').text().trim(),
+                results: <any>[]
+            };
 
-        // Respond with the extracted data
-        res.status(200).json({ title: pageTitle });
+            // Extract results for each candidate
+            $row.find('.answers, .answer').each((i, ans) => {
+                const $ans = $(ans);
+                poll.results.push({
+                    candidate: $ans.find('p, .answer').text().trim(),
+                    percentage: $ans.find('.heat-map').text().trim()
+                });
+            });
+
+            polls.push(poll);
+        });
+
+        res.status( 200 ).json({response: polls})
+
+
     } catch (error) {
-        // Handle errors
         res.status(500).json({ error: 'Failed to fetch data' });
     }
 }
