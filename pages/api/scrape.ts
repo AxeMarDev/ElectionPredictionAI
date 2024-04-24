@@ -4,11 +4,15 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
+    const {  state } = req.query|| "";
+
     try {
-        const response = await fetch('https://projects.fivethirtyeight.com/polls/arizona/');
+        const response = await fetch(`https://projects.fivethirtyeight.com/polls/${state}/`);
         const body = await response.text();
         const $ = cheerio.load(body);
         const polls:any = [];
+
+        console.log( state)
 
         // Select each row in the table
         $('table.polls-table tr.visible-row').each((index, element) => {
