@@ -10,71 +10,75 @@ import Api from "./utility/API";
 
 function convertStateAcronym(acronym: string): string {
     const states: Record<string, string> = {
-        AL: "alabama",
-        AK: "alaska",
-        AZ: "arizona",
-        AR: "arkansas",
-        CA: "california",
-        CO: "colorado",
-        CT: "connecticut",
-        DE: "delaware",
-        FL: "florida",
-        GA: "georgia",
-        HI: "hawaii",
-        ID: "idaho",
-        IL: "illinois",
-        IN: "indiana",
-        IA: "iowa",
-        KS: "kansas",
-        KY: "kentucky",
-        LA: "louisiana",
-        ME: "maine",
-        MD: "maryland",
-        MA: "massachusetts",
-        MI: "michigan",
-        MN: "minnesota",
-        MS: "mississippi",
-        MO: "missouri",
-        MT: "montana",
-        NE: "nebraska",
-        NV: "nevada",
-        NH: "new hampshire",
-        NJ: "new jersey",
-        NM: "new mexico",
-        NY: "new york",
-        NC: "north carolina",
-        ND: "north dakota",
-        OH: "ohio",
-        OK: "oklahoma",
-        OR: "oregon",
-        PA: "pennsylvania",
-        RI: "rhode island",
-        SC: "south carolina",
-        SD: "south dakota",
-        TN: "tennessee",
-        TX: "texas",
-        UT: "utah",
-        VT: "vermont",
-        VA: "virginia",
-        WA: "washington",
-        WV: "west virginia",
-        WI: "wisconsin",
-        WY: "wyoming"
+        "AL": "alabama",
+        "AK": "alaska",
+        "AZ": "arizona",
+        "AR": "arkansas",
+        "CA": "california",
+        "CO": "colorado",
+        "CT": "connecticut",
+        "DE": "delaware",
+        "FL": "florida",
+        "GA": "georgia",
+        "HI": "hawaii",
+        "ID": "idaho",
+        "IL": "illinois",
+        "IN": "indiana",
+        "IA": "iowa",
+        "KS": "kansas",
+        "KY": "kentucky",
+        "LA": "louisiana",
+        "ME": "maine",
+        "MD": "maryland",
+        "MA": "massachusetts",
+        "MI": "michigan",
+        "MN": "minnesota",
+        "MS": "mississippi",
+        "MO": "missouri",
+        "MT": "montana",
+        "NE": "nebraska",
+        "NV": "nevada",
+        "NH": "new hampshire",
+        "NJ": "new jersey",
+        "NM": "new mexico",
+        "NY": "new york",
+        "NC": "north carolina",
+        "ND": "north dakota",
+        "OH": "ohio",
+        "OK": "oklahoma",
+        "OR": "oregon",
+        "PA": "pennsylvania",
+        "RI": "rhode island",
+        "SC": "south carolina",
+        "SD": "south dakota",
+        "TN": "tennessee",
+        "TX": "texas",
+        "UT": "utah",
+        "VT": "vermont",
+        "VA": "virginia",
+        "WA": "washington",
+        "WV": "west virginia",
+        "WI": "wisconsin",
+        "WY": "wyoming"
     };
 
     return states[acronym.toUpperCase()] || "unknown";
 }
 
 
-const ScrapeComponent = () => {
+
+const ScrapeComponent = ({state}:any) => {
     const [pageData, setPageData] = useState({ response: '' });
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
+
+            const query = `?state=${state}`;
+
             try {
-                const response = await fetch('/api/scrape');
+                const response = await fetch(`/api/scrape${query}`);
                 const data = await response.json();
                 setPageData(data.response);
                 console.log(data.response)
@@ -99,6 +103,20 @@ const ScrapeComponent = () => {
     //     </div>
     // );
 };
+
+const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
+
+    return(
+        <div>
+            <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
+            <p>{ convertStateAcronym(state) }</p>
+            <div>
+                <ScrapeComponent state={convertStateAcronym(state)}/>
+            </div>
+        </div>
+    )
+
+}
 
 
 
@@ -162,9 +180,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <ScrapeComponent/>
-                        </div>
+
                     </div>
                     <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-hidden duration-500 ease-in-out`}>
                         <div className="bg-gray-900/80 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
@@ -202,10 +218,7 @@ export default function Home() {
                     </div>
                 </div>
             ):(
-                <div>
-                    <button  onClick={()=>setInStatePolls(false)} > go back</button>
-                    <p>{pickedState}</p>
-                </div>
+                PollTableComponent( pickedState ,[inStatePolls, setInStatePolls])
             )
 
   );
