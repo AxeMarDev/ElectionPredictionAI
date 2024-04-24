@@ -105,7 +105,19 @@ const ScrapeComponent = ({state}:any) => {
     );
 };
 
+const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
 
+    return(
+        <div className={"bg-gray-800 p-10 "}>
+            <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
+            <p>{ convertStateAcronym(state) }</p>
+            <div>
+                <ScrapeComponent state={convertStateAcronym(state)}/>
+            </div>
+        </div>
+    )
+
+}
 
 
 export default function Home() {
@@ -116,7 +128,7 @@ export default function Home() {
         // stateList.map(()=>{
         //
         // })
-        Api( "", setResultfromGPT)
+        //Api( "", setResultfromGPT)
     }, []);
 
     const democratPercent = 40; // Example percentage value for Democrat
