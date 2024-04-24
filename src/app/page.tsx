@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import Image from "next/image";
 import NewsPage from "./newsPage";
 import VideoEmbed from "./videoEmbed";
@@ -68,7 +68,7 @@ function convertStateAcronym(acronym: string): string {
 
 
 const ScrapeComponent = ({state}:any) => {
-    const [pageData, setPageData] = useState({ response: '' });
+    const [pageData, setPageData] = useState({response: ""});
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -95,19 +95,19 @@ const ScrapeComponent = ({state}:any) => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    // commented this out because it moves everything on the page and cuts off the map
-    // return (
-    //     <div>
-    //         <h1>Scraped Data</h1>
-    //         <p>Page Title: {pageData.title}</p>
-    //     </div>
-    // );
+    //commented this out because it moves everything on the page and cuts off the map
+    return (
+        <div>
+            <h1>Scraped Data</h1>
+            <p className={"text-white"}>Page Title: {pageData.response}</p>
+        </div>
+    );
 };
 
 const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
 
     return(
-        <div>
+        <div className={"bg-gray-800 p-10 "}>
             <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
             <p>{ convertStateAcronym(state) }</p>
             <div>
@@ -120,8 +120,19 @@ const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
 
 
 
+const stateList:string[] =["nevada", "arizona","georgia","northcarolina",
+    "pennsylvania","michigan","wisconsin", "minneasota","texas", "florida", "virginia","ohio","iowa"]
 
 export default function Home() {
+
+    const [ resultFromGPT, setResultfromGPT] = useState("")
+
+    useEffect(() => {
+        // stateList.map(()=>{
+        //
+        // })
+        Api( "", setResultfromGPT)
+    }, []);
 
     const democratPercent = 40; // Example percentage value for Democrat
     const republicanPercent = 60; // Example percentage value for Republican
