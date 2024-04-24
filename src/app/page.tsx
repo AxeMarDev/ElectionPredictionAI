@@ -54,7 +54,7 @@ export default function Home() {
     const stateData = stateinfo();
     const ALLstateinfo=stateData;//combine all string data here then give this to AI
 
-
+    // testing comment
     const mapHandler = ( event:any ) => {
         //(event.target.dataset.name);
         setInStatePolls(true)
