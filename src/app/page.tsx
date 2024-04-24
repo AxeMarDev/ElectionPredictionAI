@@ -6,6 +6,7 @@ import VideoEmbed from "./videoEmbed";
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
+import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
 
 function convertStateAcronym(acronym: string): string {
@@ -104,24 +105,8 @@ const ScrapeComponent = ({state}:any) => {
     );
 };
 
-const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
-
-    return(
-        <div className={"bg-gray-800 p-10 "}>
-            <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
-            <p>{ convertStateAcronym(state) }</p>
-            <div>
-                <ScrapeComponent state={convertStateAcronym(state)}/>
-            </div>
-        </div>
-    )
-
-}
 
 
-
-const stateList:string[] =["nevada", "arizona","georgia","northcarolina",
-    "pennsylvania","michigan","wisconsin", "minneasota","texas", "florida", "virginia","ohio","iowa"]
 
 export default function Home() {
 
@@ -139,6 +124,11 @@ export default function Home() {
     const [inStatePolls, setInStatePolls] = useState(false)
     const [pickedState, setPickedState] = useState( "")
 
+    // Retrieve the stateinfo object
+    const stateData = stateinfo();
+    const ALLstateinfo=stateData;//combine all string data here then give this to AI
+
+    // testing comment
     const mapHandler = ( event:any ) => {
         //(event.target.dataset.name);
         setInStatePolls(true)
@@ -149,6 +139,11 @@ export default function Home() {
     const [isOpen, setIsOpen] = useState(false); // State to control the visibility of the collapsible tab
 
     const toggleTab = () => setIsOpen(!isOpen);
+
+    // const buttonColorHandler = () =>{
+    //     setState("bg-red-200")
+    //     console.log("reponse of chat should be here")
+    // }
 
     return (
         !inStatePolls ? (

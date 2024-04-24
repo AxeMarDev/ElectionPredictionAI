@@ -15,7 +15,7 @@ async function Api( content:string, setResultfromGPT:any ) {
 
     // Construct request body with file content as context for summarization
     const requestBody = {
-        messages: [{ role: "system", content: "given the info in the file, who is likely to win in the election,give a percantage for each canidate out of 100%" }, { role: "user", content: content }],
+        messages: [{ role: "system", content: "given the info, who is likely to win in the upcoming 2024 pres election,give a percantage for each canidate out of 100% " }, { role: "user", content: content }],
         model: "gpt-3.5-turbo",
     };
 

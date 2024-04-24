@@ -1,7 +1,8 @@
 /* optional customization of filling per state and calling custom callbacks per state */
 export default function stateColors() {
     return {
-        // solid red states
+
+    // solid red states
         "AL": {
             fill: "red",
 
