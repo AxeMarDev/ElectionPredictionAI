@@ -6,44 +6,8 @@ import VideoEmbed from "./videoEmbed";
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
+import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
-
-
-const ScrapeComponent = () => {
-    const [pageData, setPageData] = useState({ response: '' });
-    const [isLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/scrape');
-                const data = await response.json();
-                setPageData(data.response);
-                console.log(data.response)
-                setLoading(false);
-            } catch (error:any) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-
-    // commented this out because it moves everything on the page and cuts off the map
-    // return (
-    //     <div>
-    //         <h1>Scraped Data</h1>
-    //         <p>Page Title: {pageData.title}</p>
-    //     </div>
-    // );
-};
-
-
 
 
 export default function Home() {
@@ -52,6 +16,13 @@ export default function Home() {
     const republicanPercent = 60; // Example percentage value for Republican
     const [inStatePolls, setInStatePolls] = useState(false)
     const [pickedState, setPickedState] = useState( "")
+
+    // Retrieve the stateinfo object
+    const stateData = stateinfo();
+    const ALLstateinfo=stateData;//combine all string data here then give this to AI
+
+
+
 
     const mapHandler = ( event:any ) => {
         //(event.target.dataset.name);
@@ -63,6 +34,11 @@ export default function Home() {
     const [isOpen, setIsOpen] = useState(false); // State to control the visibility of the collapsible tab
 
     const toggleTab = () => setIsOpen(!isOpen);
+
+    const buttonColorHandler = () =>{
+        setState("bg-red-200")
+        console.log("reponse of chat should be here")
+    }
 
     return (
         !inStatePolls ? (
