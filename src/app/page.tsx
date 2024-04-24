@@ -1,18 +1,29 @@
 'use client'
 import Image from "next/image";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
+import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
 
 
+
 export default function Home() {
+
+    // Retrieve the stateinfo object
+    const stateData = stateinfo();
+    const ALLstateinfo=stateData;//combine all string data here then give this to AI
+
+
+
 
     const mapHandler = ( event:any ) => {
         alert(event.target.dataset.name);
         return 0;
     };
+
+    
 
     const [color, setState] = useState("bg-white" );
 
