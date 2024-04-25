@@ -220,7 +220,7 @@ export default function Home() {
                 "pennsylvania","michigan",
                 "wisconsin", "nevada",
                 "ohio", "texas",
-                "northcarolina", "florida"
+                "northcarolina", "florida", "iowa", "virginia"
             ];
             const dataForApi = await Promise.all(states.map(state => {
                 return  fetchData(state)
@@ -311,13 +311,13 @@ export default function Home() {
                                     style={{ width: `${democratPercent}%` }}
                                     className="bg-blue-500 flex items-center justify-center text-white text-sm font-medium"
                                 >
-                                    {AmountOfVotesPerCandidate(newStateColors).D }%
+                                    {AmountOfVotesPerCandidate(newStateColors).D }
                                 </div>
                                 <div
                                     style={{ width: `${republicanPercent}%` }}
                                     className="bg-red-500 flex items-center justify-center text-white text-sm font-medium"
                                 >
-                                    {AmountOfVotesPerCandidate(newStateColors).R}%
+                                    {AmountOfVotesPerCandidate(newStateColors).R}
                                 </div>
                             </div>
                         </div>
