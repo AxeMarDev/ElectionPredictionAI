@@ -316,13 +316,13 @@ export default function Home() {
                         <div className="mx-auto mt-1 mb-6 w-4 rounded-md" style={{ width: '95vw' }}>
                             <div className="flex h-10 bg-gray-200 rounded-md  overflow-hidden my-4">
                                 <div
-                                    style={{ width: `${democratPercent}%` }}
+                                    style={{ width: `${AmountOfVotesPerCandidate(newStateColors).D/536 * 100}%` }}
                                     className="bg-blue-500 flex items-center justify-center text-white text-sm font-medium"
                                 >
                                     {AmountOfVotesPerCandidate(newStateColors).D }
                                 </div>
                                 <div
-                                    style={{ width: `${republicanPercent}%` }}
+                                    style={{ width: `${AmountOfVotesPerCandidate(newStateColors).R/536 * 100}%` }}
                                     className="bg-red-500 flex items-center justify-center text-white text-sm font-medium"
                                 >
                                     {AmountOfVotesPerCandidate(newStateColors).R}
