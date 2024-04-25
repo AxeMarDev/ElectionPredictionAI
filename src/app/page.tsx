@@ -127,7 +127,7 @@ async function FetchInfo(){
 export default function Home() {
 
     const [ resultFromGPT, setResultfromGPT] = useState("")
-
+    const [ newStateColors, setNewStateColors] = useState("")
 
     useEffect(() => {
         const fetchData = async (state:any) => {
@@ -137,7 +137,7 @@ export default function Home() {
         };
 
         const mapData = async () => {
-            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin", "nevada"];
+            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin", "nevada","ohio"];
             const dataForApi = await Promise.all(states.map(state => {
                 return  fetchData(state)
             }));
