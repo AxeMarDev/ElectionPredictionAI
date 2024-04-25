@@ -15,12 +15,13 @@ async function Api( content:string, /*setResultfromGPT:any*/ ) {
 
     // Construct request body with file content as context for summarization
     const requestBody = {
-        messages: [{ role: "system", content: "given the info, who is likely to win in the upcoming 2024 pres election,give a percantage for each canidate out of 100% " }, { role: "user", content: content }],
+        messages: [{ role: "system", content: "given the following polls for us president per state, return a json object stuctured as { state: result, state:result...} where the result is either republican or democrat. reponse with nothing else apart from json " },
+            { role: "user", content: content }],
         model: "gpt-3.5-turbo",
     };
 
     try {
-        // Send request to OpenAI API for chat completions
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -37,6 +38,7 @@ async function Api( content:string, /*setResultfromGPT:any*/ ) {
         if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
             const summary = data.choices[0].message.content.trim();
             console.log("Summary:", summary);
+            return summary
             //setResultfromGPT(summary)
         } else {
             console.error("Error: Summary not found in API response");

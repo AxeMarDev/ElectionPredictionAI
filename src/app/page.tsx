@@ -133,11 +133,11 @@ export default function Home() {
         const fetchData = async (state:any) => {
             const query = `?state=${state}`;
             const response = await fetch(`/api/scrape${query}`);
-            return  response.json();  // Directly returning the JSON data.
+            return  response.json() ;  // Directly returning the JSON data.
         };
 
         const mapData = async () => {
-            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin"];
+            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin", "nevada"];
             const dataForApi = await Promise.all(states.map(state => {
                 return  fetchData(state)
             }));
@@ -155,13 +155,15 @@ export default function Home() {
                         if (polls.candidate === ''){
                             return '';
                         } else {
-                            return `${polls.candidate} = ${polls.percentage}`
+                            return `[${polls.state}: ${polls.candidate} = ${polls.percentage}]`
                         }
                     }).join(",")
-                ).join(',')
+                ).join('\n')
             ).join(', ');
-            console.log("Data as string:", stringData);
+            console.log("Data as string:", stringData.replace(/,{2,}/g, ',')) ;
+           // Api( stringData.replace(/,{2,}/g, ',') )
         });
+
 
     }, []);
 
