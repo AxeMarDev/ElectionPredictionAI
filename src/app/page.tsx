@@ -128,7 +128,7 @@ export default function Home() {
         // stateList.map(()=>{
         //
         // })
-        //Api( "", setResultfromGPT)
+        Api( "")
     }, []);
 
     const democratPercent = 40; // Example percentage value for Democrat

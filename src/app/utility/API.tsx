@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const openai = new OpenAI({ apiKey: "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" });
 
-async function Api( content:string, setResultfromGPT:any ) {
+async function Api( content:string, /*setResultfromGPT:any*/ ) {
     // Read the content of the file
     //const filePath = '/Users/austenmeadows/Downloads/test.txt'; // Update with your file path
     //const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -37,7 +37,7 @@ async function Api( content:string, setResultfromGPT:any ) {
         if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
             const summary = data.choices[0].message.content.trim();
             console.log("Summary:", summary);
-            setResultfromGPT(summary)
+            //setResultfromGPT(summary)
         } else {
             console.error("Error: Summary not found in API response");
         }
