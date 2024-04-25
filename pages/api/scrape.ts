@@ -12,7 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const $ = cheerio.load(body);
         const polls:any = [];
 
-        console.log( state)
 
         // Select each row in the table
         $('table.polls-table tr.visible-row').each((index, element) => {
@@ -37,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             polls.push(poll);
         });
+
 
         res.status( 200 ).json({response: polls})
 

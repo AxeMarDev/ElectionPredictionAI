@@ -8,6 +8,7 @@ import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
+import scrape from "../../pages/api/scrape"
 
 function convertStateAcronym(acronym: string): string {
     const states: Record<string, string> = {
@@ -119,16 +120,49 @@ const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
 
 }
 
+async function FetchInfo(){
+
+}
 
 export default function Home() {
 
     const [ resultFromGPT, setResultfromGPT] = useState("")
 
+
     useEffect(() => {
-        // stateList.map(()=>{
-        //
-        // })
-        Api( "")
+        const fetchData = async (state:any) => {
+            const query = `?state=${state}`;
+            const response = await fetch(`/api/scrape${query}`);
+            return  response.json();  // Directly returning the JSON data.
+        };
+
+        const mapData = async () => {
+            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin"];
+            const dataForApi = await Promise.all(states.map(state => {
+                return  fetchData(state)
+            }));
+
+            // Now dataForApi is an array of results from each fetchData call.
+            console.log(dataForApi);  // You can check all the fetched data here.
+            return dataForApi;
+        };
+
+        mapData().then((finalData) => {
+
+            const stringData = finalData.map(item =>
+                item.response.map((inneritem:any)=>
+                    inneritem.results.map((polls:any)=> {
+                        if (polls.candidate === ''){
+                            return '';
+                        } else {
+                            return `${polls.candidate} = ${polls.percentage}`
+                        }
+                    }).join(",")
+                ).join(',')
+            ).join(', ');
+            console.log("Data as string:", stringData);
+        });
+
     }, []);
 
     const democratPercent = 40; // Example percentage value for Democrat
