@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const openai = new OpenAI({ apiKey: "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" });
 
-async function Api( content:string) {
+async function Api( content:string, setResultfromGPT:any ) {
     // Read the content of the file
     //const filePath = '/Users/austenmeadows/Downloads/test.txt'; // Update with your file path
     //const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -15,7 +15,7 @@ async function Api( content:string) {
 
     // Construct request body with file content as context for summarization
     const requestBody = {
-        messages: [{ role: "system", content: "given the info in the file, who is likely to win in the election,give a percantage for each canidate out of 100%" }, { role: "user", content: content }],
+        messages: [{ role: "system", content: "given the info, who is likely to win in the upcoming 2024 pres election,give a percantage for each canidate out of 100% " }, { role: "user", content: content }],
         model: "gpt-3.5-turbo",
     };
 
@@ -31,12 +31,13 @@ async function Api( content:string) {
         });
 
         // Handle response
-        const data = await response.json();
+        const data:any = await response.json();
         console.log("Response from API:", data);
 
         if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
             const summary = data.choices[0].message.content.trim();
             console.log("Summary:", summary);
+            setResultfromGPT(summary)
         } else {
             console.error("Error: Summary not found in API response");
         }
