@@ -207,6 +207,8 @@ export default function Home() {
 
     const [ resultFromGPT, setResultfromGPT] = useState("")
     const [ newStateColors, setNewStateColors] = useState("")
+    const [reCalculate, setRecalculate] = useState(0)
+    const [fieldValue, setFieldValue ] = useState("")
 
     useEffect(() => {
         const fetchData = async (state:any) => {
@@ -242,17 +244,19 @@ export default function Home() {
                             return `[${polls.state}: ${polls.candidate} = ${polls.percentage}]`
                         }
                     }).join(",")
-                ).join('\n')
+                ).join(',')// \n was here
             ).join(', ');
             console.log("Data as string:", stringData.replace(/,{2,}/g, ',')) ;
 
-            Api( stringData.replace(/,{2,}/g, ',')).then((response)=>{
+            Api( stringData.replace(/,{2,}/g, ','), fieldValue).then((response)=>{
                 setNewStateColors(response)
             })
+
+            setFieldValue('')
         });
 
-
-    }, []);
+        console.log("recalulate")
+    }, [reCalculate]);
 
     const democratPercent = 40; // Example percentage value for Democrat
     const republicanPercent = 60; // Example percentage value for Republican
@@ -283,6 +287,10 @@ export default function Home() {
     return (
         !inStatePolls ? (
                 <div>
+                    <div>
+                        <input className={"text-black"} type={"text"} value={fieldValue} onChange={(e)=> setFieldValue(e.target.value)}/>
+                        <button onClick={()=>setRecalculate(reCalculate+1)}> resend </button>
+                    </div>
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
                         <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
                             <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />

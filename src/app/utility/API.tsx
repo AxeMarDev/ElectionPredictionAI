@@ -2,11 +2,11 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: "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" , dangerouslyAllowBrowser: true});
 
-async function Api(content: string) {
+async function Api(content: string, question:string) {
     const endpoint = 'https://api.openai.com/v1/chat/completions';
     const requestBody = {
         messages: [
-            { role: "system", content: "given the following polls for US president per state, return a JSON object structured as { state: result, state: result... } where the result is either Republican or Democrat. Respond with nothing else apart from JSON." },
+            { role: "system", content: `given the following polls for US president per state, return a JSON object structured as { state: result, state: result... } where the result is either Republican or Democrat, take into consideration the following senerio and how it would affect the election: ${ question} . Respond with nothing else apart from JSON.` },
             { role: "user", content: content }
         ],
         model: "gpt-3.5-turbo",
