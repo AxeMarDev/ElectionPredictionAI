@@ -161,7 +161,8 @@ export default function Home() {
                 ).join('\n')
             ).join(', ');
             console.log("Data as string:", stringData.replace(/,{2,}/g, ',')) ;
-           // Api( stringData.replace(/,{2,}/g, ',') )
+
+            Api( stringData.replace(/,{2,}/g, ','))
         });
 
 
