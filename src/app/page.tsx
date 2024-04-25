@@ -1,13 +1,14 @@
 'use client'
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import Image from "next/image";
-import NewsPage from "./newsPage";
+import NewsPage from "./newsComponent";
 import VideoEmbed from "./videoEmbed";
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
+import NewsComponent from './newsComponent';
 
 function convertStateAcronym(acronym: string): string {
     const states: Record<string, string> = {
@@ -224,7 +225,7 @@ export default function Home() {
                                     {/* Container for news */}
                                     <div className="md:flex-1 overflow-hidden mt-44">
                                         <h2 className="text-lg font-bold p-2">Latest News</h2>
-                                        {/* Placeholder for news content */}
+                                        <NewsComponent candidate = "trump"/>
                                         <div className="p-4">
                                             <p>Here is some news content...</p>
                                             {/* Additional news items */}
