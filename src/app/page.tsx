@@ -210,14 +210,14 @@ export default function Home() {
                                 <div className="flex-col md:flex-col flex-auto">
                                     {/* Container for videos */}
                                     <div className="md:flex-1 justify-center h-2/6">
-                                        <h2 className="text-lg font-bold p-6">Live News</h2>
+                                        <h2 className="text-lg font-bold p-6">Live News Stream</h2>
                                         {/* Embedded YouTube video and other content */}
                                         <div className="flex justify-between space-x-10">
                                             <div className="flex-1 aspect-w-16 aspect-h-4">
                                                 <VideoEmbed videoId = "YDfiTGGPYCk"/>
                                             </div>
                                             <div className="flex-1 aspect-w-16 aspect-h-4">
-                                                <VideoEmbed videoId = "YDfiTGGPYCk"/>
+                                                <VideoEmbed videoId = "gN0PZCe-kwQ"/>
                                             </div>
                                         </div>
                                     </div>
