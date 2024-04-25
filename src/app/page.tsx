@@ -201,12 +201,12 @@ export default function Home() {
                         </div>
 
                     </div>
-                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-hidden duration-500 ease-in-out`}>
-                        <div className="bg-gray-900/80 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
+                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-y-scroll duration-500 ease-in-out`}>
+                        <div className="bg-gray-900 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
                             {isOpen ? '🡫' : '🡩'}
                         </div>
                         {isOpen && (
-                            <div className="bg-gray-800/90 w-screen h-screen flex flex-col justify-between">
+                            <div className="bg-gray-800 w-screen h-screen flex flex-col justify-between">
                                 {/* Container for videos and news */}
                                 <div className="flex-col md:flex-col flex-auto">
                                     {/* Container for videos */}
@@ -223,9 +223,9 @@ export default function Home() {
                                         </div>
                                     </div>
                                     {/* Container for news */}
-                                    <div className="md:flex-1 overflow-hidden mt-44">
+                                    <div className="md:flex-1 overflow-hidden mt-44 bg-gray-800"> 
                                         <h2 className="text-lg font-bold p-2">Latest News</h2>
-                                        <NewsComponent candidate = "trump"/>
+                                        <NewsComponent/>
                                         <div className="p-4">
                                             <p>Here is some news content...</p>
                                             {/* Additional news items */}

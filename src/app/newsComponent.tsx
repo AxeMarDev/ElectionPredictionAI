@@ -1,66 +1,78 @@
-const NEWS_API_KEY = 'fe1c05a3d0f847b590632a6d0556209f';
-
 import React, { useState, useEffect } from 'react';
-
-interface NewsComponentsProps {
-    candidate: string;
-}
+import axios, { AxiosError } from 'axios';
 
 interface NewsArticle {
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
+    source: {
+        id: string | null;
+        name: string;
+    }
+    author: string | null;
+    title: string;             // Title of the news article
+    description: string;       // Short description or summary of the news article
+    url: string;               // URL to the full news article
+    urlToImage: string | null; // URL to a relevant image for the news article, which might be null
+    publishedAt: string;
+    content: string;
 }
 
 interface NewsApiResponse {
-    status: string;
-    totalResults: number;
-    articles: NewsArticle[];
+    status: string;            // Response status from the API, e.g., "ok" or "error"
+    totalResults: number;      // Total number of results returned
+    articles: NewsArticle[];   // Array of news articles
 }
 
-const NewsComponent: React.FC<NewsComponentsProps> = ({candidate}) => {
-    const [articles, setArticles] = useState<NewsArticle[]>([]);
+const isAxiosError = (error: any): error is AxiosError => {
+    return error.isAxiosError;
+};
+
+const NewsComponent :React.FC = () => {
+    const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchArticles = async () => {
+        const apiKey = 'fe1c05a3d0f847b590632a6d0556209f';
+        const fetchNews = async () => {
             try {
-                const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${candidate}&apiKey=${NEWS_API_KEY}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data:NewsApiResponse = await response.json();
-                setArticles(data.articles);
-                console.log(data.articles);  
-            } catch (error:any) {
-                console.error("Fetching articles failed: ", error);
-                setError(error.message);
-            } finally {
+                const response = await axios.get(`https://newsapi.org/v2/top-headlines`, {
+                    params: {
+                        country: 'us',
+                        q: 'trump',
+                        apiKey: apiKey
+                    }
+                });
+                setArticles(response.data.articles);
                 setLoading(false);
-            }
+            } catch (err: any) {
+                setError('Failed to fetch the news');
+                console.error('Error fetching news', err);
+                setLoading(false);
+            } 
         };
 
-        fetchArticles();
+        fetchNews();
     }, []);
 
+    if (loading) return <p>Loading news...</p>;
+    if (error) return <p>Error loading news: {error}</p>;
+
     return (
-    <div className="p-4">
-        {loading && <p>Loading news...</p>}
-        {error && <p>Error loading news: {error}</p>}
-        {articles.map((article, index) => (
-            <div key={index} className="mb-4">
-                <h3 className="font-semibold">{article.title}</h3>
-                {article.urlToImage && (
+        <div className="p-4">
+            {articles.length > 0 ? (
+                articles.map((article:any, index) => (
+                    <div key={index} className="mb-4">
+                        <h2 className="font-semibold">{article.title}</h2>
+                        {article.urlToImage && (
                             <img src={article.urlToImage} alt={article.title} className="w-full h-auto" />
                         )}
-                <p>{article.description}</p>
-                <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-            </div>
-        ))}
-    </div>
-    );
-};
+                        <p>{article.description}</p>
+                        <a href={article.url} target="_blank" rel="noopener noreferrer" className= "font-semibold">Read more</a>
+                    </div>
+                ))
+            ) : (
+                <p>No news articles found.</p>
+            )}
+        </div>
+    )};
 
 export default NewsComponent;
