@@ -162,7 +162,9 @@ export default function Home() {
             ).join(', ');
             console.log("Data as string:", stringData.replace(/,{2,}/g, ',')) ;
 
-            Api( stringData.replace(/,{2,}/g, ','))
+            Api( stringData.replace(/,{2,}/g, ',')).then((response)=>{
+                setNewStateColors(response)
+            })
         });
 
 
@@ -199,7 +201,7 @@ export default function Home() {
                 <div>
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
                         <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
-                            <USAMap customize={stateColors()} onClick={mapHandler} />
+                            <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
                         </div>
 
                         <div className={"w-full pl-10  pr-10 flex justify-between "}>
