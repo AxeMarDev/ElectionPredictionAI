@@ -1,162 +1,163 @@
 /* optional customization of filling per state and calling custom callbacks per state */
-export default function stateColors() {
-    return {
+export default function stateColors( )  {
 
+
+    return {
     // solid red states
         "AL": {
-            fill: "red",
+            fill: "darkred",
 
         },
         "MS": {
-            fill: "red"
+            fill: "darkred"
         },
         "AR": {
-            fill: "red"
+            fill: "darkred"
         },
         "LA": {
-            fill: "red"
+            fill: "darkred"
         },
         "MO": {
-            fill: "red"
+            fill: "darkred"
         },
         "OK": {
-            fill: "red"
+            fill: "darkred"
         },
         "KS": {
-            fill: "red",
+            fill: "darkred",
         },
         "NE": {
-            fill: "red"
+            fill: "darkred"
         },
         "ND": {
-            fill: "red"
+            fill: "darkred"
         },
         "SD": {
-            fill: "red"
+            fill: "darkred"
         },
         "WY": {
-            fill: "red"
+            fill: "darkred"
         },
         "ID": {
-            fill: "red"
+            fill: "darkred"
         },
 
         "UT": {
-            fill: "red",
+            fill: "darkred",
         },
         "MT": {
-            fill: "red"
+            fill: "darkred"
         },
         "TN": {
-            fill: "red"
+            fill: "darkred"
         },
         "KY": {
-            fill: "red"
+            fill: "darkred"
         },
         "WV": {
-            fill: "red"
+            fill: "darkred"
         },
         "SC": {
-            fill: "red"
+            fill: "darkred"
         },
         "IN": {
-            fill: "red"
+            fill: "darkred"
         },
         "AK": {
-            fill: "red"
+            fill: "darkred"
         },
         "TX": {
-            fill: "red"
+            fill: "darkred"
         },
         "FL": {
-            fill: "red"
+            fill: "darkred"
         },
         "IA": {
-            fill: "red"
+            fill: "darkred"
         },
         "OH": {
-            fill: "red"
+            fill: "gray"
         },
         "NC": {
-            fill: "red"
+            fill: "darkred"
         },
         "WI": {
-            fill: "red"
+            fill: "gray"
         },
         "MI": {
-            fill: "red"
+            fill: "gray"
         },
         "GA": {
-            fill: "red"
+            fill: "gray"
         },
         "AZ": {
-            fill: "red"
+            fill: "gray"
         },
         "CA": {
-            fill: "blue",
+            fill: "navy",
         },
         "WA": {
-            fill: "blue"
+            fill: "navy"
         },
         "OR": {
-            fill: "blue"
+            fill: "navy"
         },
         "NM": {
-            fill: "blue"
+            fill: "navy"
         },
         "NY": {
-            fill: "blue"
+            fill: "navy"
         },
         "VT": {
-            fill: "blue"
+            fill: "navy"
         },
         "MA": {
-            fill: "blue"
+            fill: "navy"
         },
         "MD": {
-            fill: "blue"
+            fill: "navy"
         },
         "IL": {
-            fill: "blue"
+            fill: "navy"
         },
         "NJ": {
-            fill: "blue"
+            fill: "navy"
         },
         "DE": {
-            fill: "blue"
+            fill: "navy"
         },
         "CT": {
-            fill: "blue"
+            fill: "navy"
         },
         "RI": {
-            fill: "blue"
+            fill: "navy"
         },
         "CO": {
-            fill: "blue"
+            fill: "navy"
         },
         "VA": {
-            fill: "blue"
+            fill: "navy"
         },
         "DC": {
-            fill: "blue"
+            fill: "navy"
         },
         "HI": {
-            fill: "blue"
+            fill: "navy"
         },
         "MN": {
-            fill: "blue"
+            fill: "navy"
         },
         "ME": {
-            fill: "blue"
+            fill: "navy"
         },
         "NH": {
-            fill: "blue",
+            fill: "navy",
         },
         "PA": {
-            fill: "blue"
+            fill: "gray"
         },
         "NV": {
-            fill: "blue"
+            fill: "gray"
         },
 
 

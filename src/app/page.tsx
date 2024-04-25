@@ -8,6 +8,7 @@ import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
+import scrape from "../../pages/api/scrape"
 
 function convertStateAcronym(acronym: string): string {
     const states: Record<string, string> = {
@@ -119,16 +120,52 @@ const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
 
 }
 
+async function FetchInfo(){
+
+}
 
 export default function Home() {
 
     const [ resultFromGPT, setResultfromGPT] = useState("")
+    const [ newStateColors, setNewStateColors] = useState("")
 
     useEffect(() => {
-        // stateList.map(()=>{
-        //
-        // })
-        //Api( "", setResultfromGPT)
+        const fetchData = async (state:any) => {
+            const query = `?state=${state}`;
+            const response = await fetch(`/api/scrape${query}`);
+            return  response.json() ;  // Directly returning the JSON data.
+        };
+
+        const mapData = async () => {
+            const states = ["arizona", "georgia","pennsylvania","michigan","wisconsin", "nevada","ohio"];
+            const dataForApi = await Promise.all(states.map(state => {
+                return  fetchData(state)
+            }));
+
+            // Now dataForApi is an array of results from each fetchData call.
+            console.log(dataForApi);  // You can check all the fetched data here.
+            return dataForApi;
+        };
+
+        mapData().then((finalData) => {
+
+            const stringData = finalData.map(item =>
+                item.response.map((inneritem:any)=>
+                    inneritem.results.map((polls:any)=> {
+                        if (polls.candidate === ''){
+                            return '';
+                        } else {
+                            return `[${polls.state}: ${polls.candidate} = ${polls.percentage}]`
+                        }
+                    }).join(",")
+                ).join('\n')
+            ).join(', ');
+            console.log("Data as string:", stringData.replace(/,{2,}/g, ',')) ;
+
+            Api( stringData.replace(/,{2,}/g, ','))
+        });
+
+
     }, []);
 
     const democratPercent = 40; // Example percentage value for Democrat
