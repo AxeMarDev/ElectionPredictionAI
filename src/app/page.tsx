@@ -10,6 +10,7 @@ import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
 import scrape from "../../pages/api/scrape"
 
+ 
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
 
