@@ -12,17 +12,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const $ = cheerio.load(body);
         const polls:any = [];
 
-        console.log( state)
 
         // Select each row in the table
         $('table.polls-table tr.visible-row').each((index, element) => {
             const $row = $(element);
             const poll = {
-                date: $row.find('.dates .date-wrapper').text().trim(),
-                sample: $row.find('.sample').text().trim(),
-                sampleType: $row.find('.sample-type').text().trim(),
-                pollster: $row.find('.pollster-name').text().trim(),
-                sponsor: $row.find('.sponsor a').text().trim(),
+                //date: $row.find('.dates .date-wrapper').text().trim(),
+                //sample: $row.find('.sample').text().trim(),
+                //sampleType: $row.find('.sample-type').text().trim(),
+                //pollster: $row.find('.pollster-name').text().trim(),
+                //sponsor: $row.find('.sponsor a').text().trim(),
                 results: <any>[]
             };
 
@@ -30,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             $row.find('.answers, .answer').each((i, ans) => {
                 const $ans = $(ans);
                 poll.results.push({
+                    state: state,
                     candidate: $ans.find('p, .answer').text().trim(),
                     percentage: $ans.find('.heat-map').text().trim()
                 });
@@ -38,7 +38,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             polls.push(poll);
         });
 
-        res.status( 200 ).json({response: polls})
+
+        res.status( 200 ).json({state: state, response: polls})
 
 
     } catch (error) {
