@@ -289,34 +289,50 @@ export default function Home() {
     return (
         !inStatePolls ? (
                 <div>
-                    <div>
+                    {/* <div>
                         <input className={"text-black"} type={"text"} value={fieldValue} onChange={(e)=> setFieldValue(e.target.value)}/>
                         <button onClick={()=>setRecalculate(reCalculate+1)}> resend </button>
-                    </div>
+                    </div> */}
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
-                        <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
-                            <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
-                        </div>
-
-                        <div className={"w-full pl-10  pr-10 flex justify-between "}>
-                            <div className={"flex flex-row"}>
-                                <div className={"  rounded bg-white h-14 w-14"} style={{
-                                    backgroundImage: 'url(https://www.whitehouse.gov/wp-content/uploads/2021/04/P20210303AS-1901-cropped.jpg?w=1536)',
-                                    backgroundSize: "cover"
-                                }}/>
-                                <p className={"grid content-center pl-5" }>Joseph Robinette Biden</p>
+                        {/* Input and Button Section */}
+                        
+                        {/* Map Section */}
+                        <div className={"flex bg-gray-800 flex-col justify-center  content-center overflow-hidden "} >
+                            <div className="mt-4 h-10 flex justify-end w-full p-4">
+                                <label htmlFor="scenarioInput" className="block text-white font-bold mb-2">
+                                    Enter a Hypothetical Scenario:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="scenarioInput"
+                                    placeholder="What if California swings blue this year?"
+                                    value={fieldValue}
+                                    onChange={(e) => setFieldValue(e.target.value)}
+                                    className="text-black bg-gray-200 placeholder-gray-500 h-8 p-2 rounded-md"
+                                />
+                                <button
+                                    onClick={() => setRecalculate(reCalculate + 1)}
+                                    className=" ml-2 align-middle select-none text-center items-center text-xs py-3 px-6 rounded-lg h-8 text-gray-200 font-bold align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-200 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex "
+                                >
+                                    Resend
+                                </button>
                             </div>
-                            <div className={"flex flex-row"}>
-                                <p className={"grid content-center pr-5"} >Donald John Trump</p>
-                                <div className={"rounded bg-white h-14 w-14"} style={{
-                                    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg)',
-                                    backgroundSize: "cover"
-                                }}/>
+                            <div className={" grid flex-col justify-center  content-center overflow-hidden "}>
+                                <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
                             </div>
-
                         </div>
-                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md" style={{ width: '95vw' }}>
-                            <div className="flex h-10 bg-gray-200 rounded-md  overflow-hidden my-4">
+                        {/* Bottom Section */}
+                        <div className={"w-full pl-10 bg-gray-800/10 h-20 pr-10 flex justify-between"}>
+                            <div>
+                                <div className={"flex flex-col items-center"}>
+                                    <div className={"  rounded bg-white h-14 w-14"} style={{
+                                        backgroundImage: 'url(https://www.whitehouse.gov/wp-content/uploads/2021/04/P20210303AS-1901-cropped.jpg?w=1536)',
+                                        backgroundSize: "cover"
+                                    }}/>
+                                    <p className={"grid content-center font-xs pl-5" }>Joseph R. Biden</p>
+                                </div>
+                            </div>
+                            <div className="flex h-8 bg-gray-200 rounded-md  overflow-hidden my-4"style= {{ width: '70vw' }}>
                                 <div
                                     style={{ width: `${AmountOfVotesPerCandidate(newStateColors).D/536 * 100}%` }}
                                     className="bg-blue-500 flex items-center justify-center text-white text-sm font-medium"
@@ -330,11 +346,21 @@ export default function Home() {
                                     {AmountOfVotesPerCandidate(newStateColors).R}
                                 </div>
                             </div>
+                            <div className={"flex flex-col items-center"} >
+                                <div className={"rounded bg-white h-14 w-14"} style={{
+                                    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg)',
+                                    backgroundSize: "cover"
+                                }}/>
+                                <p className={"grid content-center font-xs pl-5"} >Donald J. Trump</p>
+                            </div>
+                        </div>
+                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md bd-gray-400 justify-top" >
+                            
                         </div>
 
                     </div>
                     <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-y-scroll duration-500 ease-in-out`}>
-                        <div className="bg-gray-900 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
+                        <div className="bg-gray-900/10 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
                             {isOpen ? '🡫' : '🡩'}
                         </div>
                         {isOpen && (
