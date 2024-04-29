@@ -13,8 +13,6 @@ import scrape from "../../pages/api/scrape"
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
 
-
-
     const currentAllocations:any = {
         "alabama": 9, "alaska": 3, "arizona": 11, "arkansas": 6, "california": 54, "colorado": 9, "connecticut": 7, "delaware": 3,
         "florida": 30, "georgia": 16, "hawaii": 4, "idaho": 4, "illinois": 19, "indiana": 11, "iowa": 6, "kansas": 6, "kentucky": 8, "louisiana": 8, "maine": 4,
@@ -196,16 +194,10 @@ const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
             </div>
         </div>
     )
-
-}
-
-async function FetchInfo(){
-
 }
 
 export default function Home() {
 
-    const [ resultFromGPT, setResultfromGPT] = useState("")
     const [ newStateColors, setNewStateColors] = useState("")
     const [reCalculate, setRecalculate] = useState(0)
     const [fieldValue, setFieldValue ] = useState("")
@@ -311,7 +303,6 @@ export default function Home() {
                                     backgroundSize: "cover"
                                 }}/>
                             </div>
-
                         </div>
                         <div className="mx-auto mt-1 mb-6 w-4 rounded-md" style={{ width: '95vw' }}>
                             <div className="flex h-10 bg-gray-200 rounded-md  overflow-hidden my-4">
@@ -367,8 +358,10 @@ export default function Home() {
                     </div>
                 </div>
             ):(
+
                 PollTableComponent( pickedState ,[inStatePolls, setInStatePolls])
-            )
+
+        )
 
   );
 }
