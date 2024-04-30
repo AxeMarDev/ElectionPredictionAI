@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Election Predictor 2024
 
-## Getting Started
+## Project Overview
+This project is a web application built with Next.js and TypeScript that predicts the winner of the 2024 U.S. Presidential Election. It scrapes polling data from various sources and utilizes OpenAI's API for data evaluation and prediction analysis.
 
-First, run the development server:
+## System Architecture
 
+### Structure and Algorithms
+The system is structured around a modular Next.js framework that facilitates the integration of frontend components with backend services seamlessly. Key algorithms include:
+- **Data Scraping Algorithm**: Custom scripts that periodically fetch the latest polling data from specified sources.
+- **Data Evaluation Algorithm**: Utilizes OpenAI's API to analyze trends and predict outcomes based on historical data comparisons.
+
+### UML Class Diagram
+![UML Class Diagram](path/to/uml_class_diagram.png)
+
+This diagram provides a visual representation of the classes and their relationships within the system.
+
+### System Statechart Diagrams
+![Statechart Diagram](path/to/statechart_diagram.png)
+
+Statechart diagrams illustrate the various states within the application, from data scraping to prediction output.
+
+## Development and Testing
+
+### Acceptance Test Cases
+The execution of acceptance test cases is documented through detailed screenshots showcasing the interaction with the system. Each step corresponds to a specific test case scenario.
+
+#### Test Case Example
+1. **Start Test**: User accesses the prediction page.
+2. **Data Retrieval**: System fetches the latest data.
+3. **Prediction Display**: The prediction results are displayed to the user.
+
+Screenshots:
+- Main Page: ![Main Page](path/to/main_page.png)
+- Data Fetching: ![Fetching Data](path/to/fetching_data.png)
+- Results Display: ![Results Display](path/to/results_display.png)
+- Pop-up Example: ![Pop-up](path/to/pop_up.png)
+
+### Git Repository Network
+![Git Network Diagram](path/to/git_network_diagram.png)
+
+This diagram shows the branch and commit history, illustrating the development workflow and contributions.
+
+## Installation and Setup
+Instructions for setting up the project locally:
 ```bash
+git clone https://github.com/yourrepository/election-predictor-2024.git
+cd election-predictor-2024
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
