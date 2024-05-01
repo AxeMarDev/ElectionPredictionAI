@@ -366,7 +366,7 @@ export default function Home() {
                         {isOpen && (
                             <div className="bg-gray-800 w-screen h-screen flex flex-col justify-between">
                                 {/* Container for videos and news */}
-                                <div className="flex-col md:flex-col flex-auto">
+                                <div className="flex-col md:flex-col flex-auto bg-gray-800">
                                     {/* Container for videos */}
                                     <div className="md:flex-1 justify-center h-2/6">
                                         <h2 className="text-lg font-bold p-6">Live News Stream</h2>
@@ -381,7 +381,7 @@ export default function Home() {
                                         </div>
                                     </div>
                                     {/* Container for news */}
-                                    <div className="md:flex-1 overflow-hidden mt-44 bg-gray-800"> 
+                                    <div className="md:flex-1 overflow-hidden mt-4 bg-gray-800"> 
                                         <h2 className="text-lg font-bold p-2">Latest News</h2>
                                         <NewsComponent/>
                                         <div className="p-4">
