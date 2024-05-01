@@ -11,12 +11,11 @@ The system is structured around a modular Next.js framework that facilitates the
 - **Data Evaluation Algorithm**: Utilizes OpenAI's API to analyze trends and predict outcomes based on historical data comparisons.
 
 ### UML Class Diagram
-![UML Class Diagram](path/to/uml_class_diagram.png)
 
 This diagram provides a visual representation of the classes and their relationships within the system.
 
 ### System Statechart Diagrams
-![Statechart Diagram](path/to/statechart_diagram.png)
+![Statechart Diagram](./READMEresources/statediagram.png)
 
 Statechart diagrams illustrate the various states within the application, from data scraping to prediction output.
 
@@ -31,10 +30,7 @@ The execution of acceptance test cases is documented through detailed screenshot
 3. **Prediction Display**: The prediction results are displayed to the user.
 
 Screenshots:
-- Main Page: ![Main Page](path/to/main_page.png)
-- Data Fetching: ![Fetching Data](path/to/fetching_data.png)
-- Results Display: ![Results Display](path/to/results_display.png)
-- Pop-up Example: ![Pop-up](path/to/pop_up.png)
+
 
 ### Git Repository Network
 ![Git Network Diagram](path/to/git_network_diagram.png)
