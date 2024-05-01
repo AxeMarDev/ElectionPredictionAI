@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: "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" , dangerouslyAllowBrowser: true});
+const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY  , dangerouslyAllowBrowser: true});
 
 async function Api(content: string, question:string) {
     const endpoint = 'https://api.openai.com/v1/chat/completions';
