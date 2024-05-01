@@ -298,21 +298,21 @@ export default function Home() {
                         
                         {/* Map Section */}
                         <div className={"flex bg-gray-800 flex-col justify-center  content-center overflow-hidden "} >
-                            <div className="mt-4 h-10 flex justify-end w-full p-4">
-                                <label htmlFor="scenarioInput" className="block text-white font-bold mb-2">
+                            <div className="mt-2 h-10 flex justify-end w-full p-4">
+                                {/* <label htmlFor="scenarioInput" className="block text-white font-bold mb-2">
                                     Enter a Hypothetical Scenario:
-                                </label>
+                                </label> */}
                                 <input
                                     type="text"
                                     id="scenarioInput"
-                                    placeholder="What if California swings blue this year?"
+                                    placeholder="Enter a Hypothetical Scenario"
                                     value={fieldValue}
                                     onChange={(e) => setFieldValue(e.target.value)}
-                                    className="text-black bg-gray-200 placeholder-gray-500 h-8 p-2 rounded-md"
+                                    className="text-black bg-gray-200 placeholder-gray-700 w-1/5 h-8 p-2 rounded-md"
                                 />
                                 <button
                                     onClick={() => setRecalculate(reCalculate + 1)}
-                                    className=" ml-2 align-middle select-none text-center items-center text-xs py-3 px-6 rounded-lg h-8 text-gray-200 font-bold align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-200 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex "
+                                    className=" ml-2 align-middle select-none text-center items-center text-xs py-3 px-6 rounded-lg h-8 text-gray-200 font-bold align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-200 text-gray-200 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex "
                                 >
                                     Resend
                                 </button>
@@ -329,7 +329,7 @@ export default function Home() {
                                         backgroundImage: 'url(https://www.whitehouse.gov/wp-content/uploads/2021/04/P20210303AS-1901-cropped.jpg?w=1536)',
                                         backgroundSize: "cover"
                                     }}/>
-                                    <p className={"grid content-center font-xs pl-5" }>Joseph R. Biden</p>
+                                    <p className={"grid content-center font-xs pl-5 pr-3" }>Joseph R. Biden</p>
                                 </div>
                             </div>
                             <div className="flex h-8 bg-gray-200 rounded-md  overflow-hidden my-4"style= {{ width: '70vw' }}>
@@ -351,7 +351,7 @@ export default function Home() {
                                     backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg)',
                                     backgroundSize: "cover"
                                 }}/>
-                                <p className={"grid content-center font-xs pl-5"} >Donald J. Trump</p>
+                                <p className={"grid content-center font-xs pr-5 pl-3"} >Donald J. Trump</p>
                             </div>
                         </div>
                         <div className="mx-auto mt-1 mb-6 w-4 rounded-md bd-gray-400 justify-top" >
@@ -359,19 +359,19 @@ export default function Home() {
                         </div>
 
                     </div>
-                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-y-scroll duration-500 ease-in-out`}>
-                        <div className="bg-gray-900/10 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
+                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-x-hidden duration-500 ease-in-out`}>
+                        <div className="bg-gray-900 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
                             {isOpen ? '🡫' : '🡩'}
                         </div>
                         {isOpen && (
                             <div className="bg-gray-800 w-screen h-screen flex flex-col justify-between">
                                 {/* Container for videos and news */}
-                                <div className="flex-col md:flex-col flex-auto bg-gray-800">
+                                <div className="flex flex-col  flex-auto bg-gray-800">
                                     {/* Container for videos */}
                                     <div className="md:flex-1 justify-center h-2/6">
-                                        <h2 className="text-lg font-bold p-6">Live News Stream</h2>
+                                        <h2 className="text-4xl font-bold bg-gray-900 font-serif p-6 mb-4">Live News Stream</h2>
                                         {/* Embedded YouTube video and other content */}
-                                        <div className="flex justify-between space-x-10">
+                                        <div className="flex justify-between space-x-10 ">
                                             <div className="flex-1 aspect-w-16 aspect-h-4">
                                                 <VideoEmbed videoId = "YDfiTGGPYCk"/>
                                             </div>
@@ -382,12 +382,9 @@ export default function Home() {
                                     </div>
                                     {/* Container for news */}
                                     <div className="md:flex-1 overflow-hidden mt-4 bg-gray-800"> 
-                                        <h2 className="text-lg font-bold p-2">Latest News</h2>
+                                      
+                                        <h2 className="text-4xl font-bold bg-gray-900 font-serif p-6 ">Latest News</h2>
                                         <NewsComponent/>
-                                        <div className="p-4">
-                                            <p>Here is some news content...</p>
-                                            {/* Additional news items */}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
