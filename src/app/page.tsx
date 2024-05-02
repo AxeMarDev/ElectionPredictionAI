@@ -10,6 +10,7 @@ import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
 import scrape from "../../pages/api/scrape"
 import InStateComponent from "@/app/components/inStateComponent";
+import AIMEPLOGO from "../../READMEresources/aimep.png"
 
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
@@ -232,6 +233,9 @@ export default function Home() {
                         <button onClick={()=>setRecalculate(reCalculate+1)}> resend </button>
                     </div>
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
+
+                        <Image className={"w-20"} src={AIMEPLOGO} alt={"aimlogo"}/>
+
                         <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
                             <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
                         </div>

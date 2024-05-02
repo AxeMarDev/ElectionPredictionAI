@@ -1,5 +1,6 @@
 # Election Predictor 2024
 
+![Statechart Diagram](./READMEresources/aimep.png)
 ## Project Overview
 This project is a web application built with Next.js and TypeScript that predicts the winner of the 2024 U.S. Presidential Election. It scrapes polling data from various sources and utilizes OpenAI's API for data evaluation and prediction analysis.
 
