@@ -19,6 +19,8 @@ describe('AmountOfVotesPerCandidate function', () => {
     });
 });
 
+
+
 // Testing convertStateAcronym
 describe('convertStateAcronym function', () => {
     it('should return the full state name for a valid state acronym', () => {
