@@ -1,5 +1,5 @@
 import React from 'react';
-import Instateinfo from './instateinfo';
+//import Instateinfo from './instateinfo';
 
 
 
@@ -663,4 +663,5 @@ function findStateData(stateName:string, ...stateArrays:StateData[][]) {
                 }
         }
 
-        return foundStatesData;}
+        return foundStatesData;
+}
