@@ -236,7 +236,7 @@ export default function Home() {
                     </div> */}
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
                         {/* Input and Button Section */}
-                        
+                        <Image className={"w-32 fixed left-10 top-3"} src={AIMEPLOGO} alt={"aimlogo"}/>
                         {/* Map Section */}
                         <div className={"flex bg-gray-800 flex-col justify-center  content-center overflow-hidden "} >
                             <div className="mt-2 h-10 flex justify-end w-full p-4">
@@ -295,11 +295,12 @@ export default function Home() {
                                 <p className={"grid content-center font-xs pr-5 pl-3"} >Donald J. Trump</p>
                             </div>
                         </div>
-                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md bd-gray-400 justify-top" >
+                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md bd-gray-100 justify-top" >
                             
                         </div>
 
                     </div>
+
                     <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-x-hidden duration-500 ease-in-out`}>
                         <div className="bg-gray-900 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
                             {isOpen ? '🡫' : '🡩'}

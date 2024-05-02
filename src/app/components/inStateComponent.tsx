@@ -33,7 +33,7 @@ const ScrapeComponent = ({state}:any) => {
 
     return (
         <div>
-            <h1>Scraped Data</h1>
+
             <div className={"flex flex-col"}>
                 <div className={"flex flex-row w-full"}>
                     <div className={"border-white bg-blue-950  border-t-2 border-l-2 w-full p-2"}>
@@ -72,10 +72,12 @@ export default function InStateComponent({instatePoll, setInStatePolls, state}:p
 
     return(
         <div className={"bg-gray-800 p-10 h-screen"}>
-            <h1 className={"text-5xl font-black"}> {convertStateAcronym(state)} </h1>
-            <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
-            <p>{ convertStateAcronym(state) }</p>
-            <div>
+            <div className={"flex flex-row"}>
+                <button className={"text-5xl font-black mr-5"} onClick={()=>setInStatePolls(!instatePoll)} > {"<  "} </button>
+                <h1 className={"text-5xl font-black"}> {convertStateAcronym(state)} </h1>
+            </div>
+
+            <div className={"mt-10"}>
                 <ScrapeComponent state={convertStateAcronym(state)}/>
             </div>
         </div>
