@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {convertStateAcronym} from "@/app/page";
+import FindStateData from "@/app/utility/statepolldata";
 
 type props = { instatePoll:boolean , setInStatePolls:React.Dispatch<React.SetStateAction<boolean>>, state:string}
 
@@ -55,10 +56,12 @@ const ScrapeComponent = ({state}:any) => {
                         </div>
                     </div>
                 ))}
-                <div className={"flex flex-row w-full"}>
+                <div className={"flex flex-row w-full mb-10"}>
                     <div className={"border-white border-t-2 border-l-2 w-full"}/>
                     <div className={"border-white border-t-2 border-x-2 w-full"}/>
                 </div>
+                <p className={"mb-3 text-3xl"}>Past Election Results</p>
+                <FindStateData state={state}/>
             </div>
 
         </div>
