@@ -9,6 +9,7 @@ import stateColors from "@/app/utility/stateColors";
 import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
 import scrape from "../../pages/api/scrape"
+import InStateComponent from "@/app/components/inStateComponent";
 
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
@@ -87,7 +88,7 @@ function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
     return added()
 
 }
-function convertStateAcronym(acronym: string): string {
+ function convertStateAcronym(acronym: string): string {
     const states: Record<string, string> = {
         "AL": "alabama",
         "AK": "alaska",
@@ -143,58 +144,10 @@ function convertStateAcronym(acronym: string): string {
 
     return states[acronym.toUpperCase()] || "unknown";
 }
+export {convertStateAcronym}
 
 
 
-const ScrapeComponent = ({state}:any) => {
-    const [pageData, setPageData] = useState({response: ""});
-    const [isLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-
-            const query = `?state=${state}`;
-
-            try {
-                const response = await fetch(`/api/scrape${query}`);
-                const data = await response.json();
-                setPageData(data.response);
-                console.log(data.response)
-                setLoading(false);
-            } catch (error:any) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-
-    //commented this out because it moves everything on the page and cuts off the map
-    return (
-        <div>
-            <h1>Scraped Data</h1>
-            <p className={"text-white"}>Page Title: {pageData.response}</p>
-        </div>
-    );
-};
-
-const PollTableComponent = (state:string, [instatePoll,setInStatePolls]:any) =>{
-
-    return(
-        <div className={"bg-gray-800 p-10 "}>
-            <button  onClick={()=>setInStatePolls(!instatePoll)} > go back</button>
-            <p>{ convertStateAcronym(state) }</p>
-            <div>
-                <ScrapeComponent state={convertStateAcronym(state)}/>
-            </div>
-        </div>
-    )
-}
 
 export default function Home() {
 
@@ -270,11 +223,6 @@ export default function Home() {
     const [isOpen, setIsOpen] = useState(false); // State to control the visibility of the collapsible tab
 
     const toggleTab = () => setIsOpen(!isOpen);
-
-    // const buttonColorHandler = () =>{
-    //     setState("bg-red-200")
-    //     console.log("reponse of chat should be here")
-    // }
 
     return (
         !inStatePolls ? (
@@ -359,7 +307,7 @@ export default function Home() {
                 </div>
             ):(
 
-                PollTableComponent( pickedState ,[inStatePolls, setInStatePolls])
+               <InStateComponent state={pickedState} instatePoll={inStatePolls} setInStatePolls={setInStatePolls}/>
 
         )
 
