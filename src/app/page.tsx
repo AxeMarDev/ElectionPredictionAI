@@ -1,17 +1,19 @@
 'use client'
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import Image from "next/image";
-import NewsPage from "./newsPage";
+import NewsPage from "./newsComponent";
 import VideoEmbed from "./videoEmbed";
 // @ts-ignore
 import USAMap from "react-usa-map";
 import stateColors from "@/app/utility/stateColors";
 import stateinfo from "@/app/utility/stateinfo";
 import Api from "./utility/API";
+import NewsComponent from './newsComponent';
 import scrape from "../../pages/api/scrape"
 import InStateComponent from "@/app/components/inStateComponent";
 import AIMEPLOGO from "../../READMEresources/aimep.png"
 
+ 
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
 
@@ -228,36 +230,50 @@ export default function Home() {
     return (
         !inStatePolls ? (
                 <div>
-                    <div>
+                    {/* <div>
                         <input className={"text-black"} type={"text"} value={fieldValue} onChange={(e)=> setFieldValue(e.target.value)}/>
                         <button onClick={()=>setRecalculate(reCalculate+1)}> resend </button>
-                    </div>
+                    </div> */}
                     <div className={"bg-gray-800 w-screen h-screen flex flex-col justify-between"}>
-
-                        <Image className={"w-20"} src={AIMEPLOGO} alt={"aimlogo"}/>
-
-                        <div className={"flex flex-col h-full justify-center grid content-center"} style={{ overflow: 'hidden'}}>
-                            <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
-                        </div>
-
-                        <div className={"w-full pl-10  pr-10 flex justify-between "}>
-                            <div className={"flex flex-row"}>
-                                <div className={"  rounded bg-white h-14 w-14"} style={{
-                                    backgroundImage: 'url(https://www.whitehouse.gov/wp-content/uploads/2021/04/P20210303AS-1901-cropped.jpg?w=1536)',
-                                    backgroundSize: "cover"
-                                }}/>
-                                <p className={"grid content-center pl-5" }>Joseph Robinette Biden</p>
+                        {/* Input and Button Section */}
+                        
+                        {/* Map Section */}
+                        <div className={"flex bg-gray-800 flex-col justify-center  content-center overflow-hidden "} >
+                            <div className="mt-2 h-10 flex justify-end w-full p-4">
+                                {/* <label htmlFor="scenarioInput" className="block text-white font-bold mb-2">
+                                    Enter a Hypothetical Scenario:
+                                </label> */}
+                                <input
+                                    type="text"
+                                    id="scenarioInput"
+                                    placeholder="Enter a Hypothetical Scenario"
+                                    value={fieldValue}
+                                    onChange={(e) => setFieldValue(e.target.value)}
+                                    className="text-black bg-gray-200 placeholder-gray-700 w-1/5 h-8 p-2 rounded-md"
+                                />
+                                <button
+                                    onClick={() => setRecalculate(reCalculate + 1)}
+                                    className=" ml-2 align-middle select-none text-center items-center text-xs py-3 px-6 rounded-lg h-8 text-gray-200 font-bold align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-200 text-gray-200 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] flex "
+                                >
+                                    Resend
+                                </button>
                             </div>
-                            <div className={"flex flex-row"}>
-                                <p className={"grid content-center pr-5"} >Donald John Trump</p>
-                                <div className={"rounded bg-white h-14 w-14"} style={{
-                                    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg)',
-                                    backgroundSize: "cover"
-                                }}/>
+                            <div className={" grid flex-col justify-center  content-center overflow-hidden "}>
+                                <USAMap customize={stateColors(newStateColors)} onClick={mapHandler} />
                             </div>
                         </div>
-                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md" style={{ width: '95vw' }}>
-                            <div className="flex h-10 bg-gray-200 rounded-md  overflow-hidden my-4">
+                        {/* Bottom Section */}
+                        <div className={"w-full pl-10 bg-gray-800/10 h-20 pr-10 flex justify-between"}>
+                            <div>
+                                <div className={"flex flex-col items-center"}>
+                                    <div className={"  rounded bg-white h-14 w-14"} style={{
+                                        backgroundImage: 'url(https://www.whitehouse.gov/wp-content/uploads/2021/04/P20210303AS-1901-cropped.jpg?w=1536)',
+                                        backgroundSize: "cover"
+                                    }}/>
+                                    <p className={"grid content-center font-xs pl-5 pr-3" }>Joseph R. Biden</p>
+                                </div>
+                            </div>
+                            <div className="flex h-8 bg-gray-200 rounded-md  overflow-hidden my-4"style= {{ width: '70vw' }}>
                                 <div
                                     style={{ width: `${AmountOfVotesPerCandidate(newStateColors).D/536 * 100}%` }}
                                     className="bg-blue-500 flex items-center justify-center text-white text-sm font-medium"
@@ -271,38 +287,45 @@ export default function Home() {
                                     {AmountOfVotesPerCandidate(newStateColors).R}
                                 </div>
                             </div>
+                            <div className={"flex flex-col items-center"} >
+                                <div className={"rounded bg-white h-14 w-14"} style={{
+                                    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg)',
+                                    backgroundSize: "cover"
+                                }}/>
+                                <p className={"grid content-center font-xs pr-5 pl-3"} >Donald J. Trump</p>
+                            </div>
+                        </div>
+                        <div className="mx-auto mt-1 mb-6 w-4 rounded-md bd-gray-400 justify-top" >
+                            
                         </div>
 
                     </div>
-                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-hidden duration-500 ease-in-out`}>
-                        <div className="bg-gray-900/80 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
+                    <div className={`absolute bottom-0 w-full ${isOpen ? 'h-full' : 'h-10'} transition-height overflow-x-hidden duration-500 ease-in-out`}>
+                        <div className="bg-gray-900 text-white cursor-pointer p-2 text-center" onClick={toggleTab}>
                             {isOpen ? '🡫' : '🡩'}
                         </div>
                         {isOpen && (
-                            <div className="bg-gray-800/90 w-screen h-screen flex flex-col justify-between">
+                            <div className="bg-gray-800 w-screen h-screen flex flex-col justify-between">
                                 {/* Container for videos and news */}
-                                <div className="flex-col md:flex-col flex-auto">
+                                <div className="flex flex-col  flex-auto bg-gray-800">
                                     {/* Container for videos */}
                                     <div className="md:flex-1 justify-center h-2/6">
-                                        <h2 className="text-lg font-bold p-6">Live News</h2>
+                                        <h2 className="text-4xl font-bold bg-gray-900 font-serif p-6 mb-4">Live News Stream</h2>
                                         {/* Embedded YouTube video and other content */}
-                                        <div className="flex justify-between space-x-10">
+                                        <div className="flex justify-between space-x-10 ">
                                             <div className="flex-1 aspect-w-16 aspect-h-4">
                                                 <VideoEmbed videoId = "YDfiTGGPYCk"/>
                                             </div>
                                             <div className="flex-1 aspect-w-16 aspect-h-4">
-                                                <VideoEmbed videoId = "YDfiTGGPYCk"/>
+                                                <VideoEmbed videoId = "gN0PZCe-kwQ"/>
                                             </div>
                                         </div>
                                     </div>
                                     {/* Container for news */}
-                                    <div className="md:flex-1 overflow-hidden mt-44">
-                                        <h2 className="text-lg font-bold p-2">Latest News</h2>
-                                        {/* Placeholder for news content */}
-                                        <div className="p-4">
-                                            <p>Here is some news content...</p>
-                                            {/* Additional news items */}
-                                        </div>
+                                    <div className="md:flex-1 overflow-hidden mt-4 bg-gray-800"> 
+                                      
+                                        <h2 className="text-4xl font-bold bg-gray-900 font-serif p-6 ">Latest News</h2>
+                                        <NewsComponent/>
                                     </div>
                                 </div>
                             </div>
