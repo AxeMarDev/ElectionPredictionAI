@@ -13,7 +13,7 @@ import scrape from "../../pages/api/scrape"
 import InStateComponent from "@/app/components/inStateComponent";
 import AIMEPLOGO from "../../READMEresources/aimep.png"
 
- 
+ // added comment
 
 function AmountOfVotesPerCandidate(whoWonList:string): {"D":number, "R":number}{
 
